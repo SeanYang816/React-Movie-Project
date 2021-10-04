@@ -6,10 +6,11 @@ import { addMovies, fetchMovies,fetchShows } from '../../features/movies/movieSl
 
 function Home() {
     const dispatch = useDispatch()
+    const movieText = "marvel"
 
     useEffect(() => {
-        dispatch(fetchMovies());
-        dispatch(fetchShows());
+        dispatch(fetchMovies(movieText));
+        dispatch(fetchShows(movieText));
     }, [dispatch])
 
 

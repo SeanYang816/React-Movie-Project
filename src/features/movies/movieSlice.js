@@ -2,7 +2,6 @@ import { APIKey } from '../../common/apis/MovieApiKey'
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const BASE_URL = 'http://www.omdbapi.com/';
-const movieText = 'harry'
 const initialState = {
     movies: {},
     shows: {},
@@ -13,8 +12,8 @@ const initialState = {
 
 export const fetchMovies = createAsyncThunk(
     'movies/fetchMovies',
-    async ( _, {dispatch , getState} ) => {
-        const response = await fetch(`${BASE_URL}?apiKey=${APIKey}&s=${movieText}&type=movie`)
+    async ( term, {dispatch , getState} ) => {
+        const response = await fetch(`${BASE_URL}?apiKey=${APIKey}&s=${term}&type=movie`)
         const json =  await response.json();
         console.log("THE response from API", json)
         return json
@@ -23,8 +22,8 @@ export const fetchMovies = createAsyncThunk(
 
 export const fetchShows = createAsyncThunk(
     'movies/fetchShows',
-    async ( _, {dispatch , getState} ) => {
-        const response = await fetch(`${BASE_URL}?apiKey=${APIKey}&s=${movieText}&type=series`)
+    async ( term, {dispatch , getState} ) => {
+        const response = await fetch(`${BASE_URL}?apiKey=${APIKey}&s=${term}&type=series`)
         const json =  await response.json();
         console.log("THE response from API", json)
         return json

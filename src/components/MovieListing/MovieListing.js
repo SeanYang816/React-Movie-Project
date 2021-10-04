@@ -1,4 +1,5 @@
 import React from 'react'
+import Slider from 'react-slick';
 import { useSelector } from 'react-redux';
 import { getAllMovies } from '../../features/movies/movieSlice'
 import MovieCard from '../MovieCard/MovieCard'
