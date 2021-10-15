@@ -4,28 +4,35 @@ import { Link } from "react-router-dom"
 import { fetchMovies, fetchShows } from '../../features/movies/movieSlice';
 import user from "../../images/user.png"
 import "./Header.scss"
+import SearchIcon from '@mui/icons-material/Search';
+import Search from '@mui/icons-material/Search';
+import HdIcon from '@mui/icons-material/Hd';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 function Header() {
     const [term, setTerm] = useState('');
     const dispatch = useDispatch()
 
     const handleSubmit = (e) => {
-        if(term === ""){ alert('Please type in a movie name.')}
         e.preventDefault();
-        dispatch(fetchMovies(term))
-        dispatch(fetchShows(term))
+        if(term === "") alert('Please type in a movie name.')
+        else{
+            dispatch(fetchMovies(term))
+            dispatch(fetchShows(term))
+        }
     }
     return (
         <div className="header">
             
-            <div className="logo"><Link to="/">Movie App</Link></div>
+            <div className="logo"><Link to="/"><HdIcon fontSize="large" color="info" /></Link></div>
             <div className="search-bar">
                 <form action="" onSubmit={handleSubmit}>
                     <input type="text" value={term} placeholder="Search Movies or Shows" onChange={(e)=> setTerm(e.target.value)} />
-                    <button type="submit"><i className="fa fa-search"></i></button>
+                    <button type="submit"><SearchIcon  fontSize="large" /></button>
                 </form>
             </div>
             <div className="user-image">
-                <img src={user} alt="user" />
+                <AccountCircleIcon  color="info" fontSize="large"/>
             </div>
         </div>
     )
